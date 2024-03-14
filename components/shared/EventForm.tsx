@@ -10,6 +10,7 @@ import * as z from 'zod'
 
 import { IEvent } from "@/lib/database/models/event.model"
 import { eventFormSchema } from "@/lib/database/validator"
+import Dropdown from "./Dropdown"
 
 
 
@@ -44,6 +45,18 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
               <FormItem className="w-full">
                 <FormControl>
                   <Input placeholder="Event title" {...field} className="input-field" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+                    <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Dropdown onChangeHandler={field.onChange} value={field.value}/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
