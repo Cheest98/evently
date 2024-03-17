@@ -50,27 +50,27 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
   async function onSubmit(values: z.infer<typeof eventFormSchema>) {
     let uploadedImageUrl = values.imageUrl;
 
-    if (files.length > 0) {
-      const uploadedImages = await startUpload(files);
+    if(files.length > 0) {
+      const uploadedImages = await startUpload(files)
 
-      if (!uploadedImages) {
-        return;
+      if(!uploadedImages) {
+        return
       }
 
-      uploadedImageUrl = uploadedImages[0].url;
+      uploadedImageUrl = uploadedImages[0].url
     }
 
-    if (type === "Create") {
+    if(type === 'Create') {
       try {
         const newEvent = await createEvent({
           event: { ...values, imageUrl: uploadedImageUrl },
           userId,
-          path: "/profile",
-        });
+          path: '/profile'
+        })
 
-        if (newEvent) {
+        if(newEvent) {
           form.reset();
-          router.push(`/events/${newEvent._id}`);
+          router.push(`/events/${newEvent._id}`)
         }
       } catch (error) {
         console.log(error);
