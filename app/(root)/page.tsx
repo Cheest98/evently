@@ -52,7 +52,7 @@ export default async function Home() {
             Search Category
           </div>
           <Collection
-            data={[]}
+            data={events?.data}
             emptyTitle="No Events Found"
             emptyStateSubtext="Come back later"
             collectionType="All_Events"

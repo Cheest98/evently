@@ -31,7 +31,7 @@ const Collection = ({
               const hidePrice = collectionType === 'My_Tickets';
 
               return (
-                  <Card />
+                <Card event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} />
               )
             })}
           </ul>
