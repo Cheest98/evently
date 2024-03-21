@@ -1,7 +1,7 @@
 "use server"
 
 import {
-    CreateEventParams, GetAllEventsParams,
+    CreateEventParams, DeleteEventParams, GetAllEventsParams,
 } from '@/types';
 
 import Event from '@/lib/database/models/event.model';
@@ -73,4 +73,19 @@ export async function getEventById(eventId: string) {
       handleError(error)
     }
   }
+
+
   
+export async function deleteEvent({eventId, path}: DeleteEventParams) {
+  try {
+    await connectToDatabase()
+
+    const deletedEvent = await Event.findByIdAndDelete(eventId)
+
+    if(deletedEvent) revalidatePath (path);
+
+    return JSON.parse(JSON.stringify(event))
+  } catch (error) {
+    handleError(error)
+  }
+}
