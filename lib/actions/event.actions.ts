@@ -1,7 +1,7 @@
 "use server"
 
 import {
-    CreateEventParams, DeleteEventParams, GetAllEventsParams,
+    CreateEventParams, DeleteEventParams, GetAllEventsParams, UpdateEventParams,
 } from '@/types';
 
 import Event from '@/lib/database/models/event.model';
@@ -85,6 +85,29 @@ export async function deleteEvent({eventId, path}: DeleteEventParams) {
     if(deletedEvent) revalidatePath (path);
 
     return JSON.parse(JSON.stringify(event))
+  } catch (error) {
+    handleError(error)
+  }
+}
+
+// UPDATE
+export async function updateEvent({ userId, event, path }: UpdateEventParams) {
+  try {
+    await connectToDatabase()
+
+    const eventToUpdate = await Event.findById(event._id)
+    if (!eventToUpdate || eventToUpdate.organizer.toHexString() !== userId) {
+      throw new Error('Unauthorized or event not found')
+    }
+
+    const updatedEvent = await Event.findByIdAndUpdate(
+      event._id,
+      { ...event, category: event.categoryId },
+      { new: true }
+    )
+    revalidatePath(path)
+
+    return JSON.parse(JSON.stringify(updatedEvent))
   } catch (error) {
     handleError(error)
   }
