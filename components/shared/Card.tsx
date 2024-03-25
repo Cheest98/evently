@@ -3,7 +3,6 @@ import { formatDateTime } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { DeleteConfirmation } from "./DeleteConfirmation";
 
 type CardProps = {
@@ -25,6 +24,7 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         style={{ backgroundImage: `url(${event.imageUrl})` }}
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
+      {/* IS EVENT CREATOR ... */}
 
       {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
@@ -36,9 +36,11 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
               height={20}
             />
           </Link>
+
+          <DeleteConfirmation eventId={event._id} />
         </div>
       )}
-      <DeleteConfirmation eventId={event._id} />
+
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         {!hidePrice && (
           <div className="flex gap-2">
@@ -82,5 +84,4 @@ const Card = ({ event, hasOrderLink, hidePrice }: CardProps) => {
     </div>
   );
 };
-
 export default Card;
