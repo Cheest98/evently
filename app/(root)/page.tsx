@@ -7,18 +7,17 @@ import Search from "@/components/shared/Search";
 import CategoryFilter from "@/components/shared/CategoryFilter";
 import { SearchParamProps } from "@/types";
 
-export default async function Home({searchParams}: SearchParamProps) {
+export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
-  const searchText = (searchParams?.query as string) || '';
-  const category = (searchParams?.category as string) || '';
+  const searchText = (searchParams?.query as string) || "";
+  const category = (searchParams?.category as string) || "";
 
   const events = await getAllEvents({
     query: searchText,
     category,
     page,
-    limit: 6
-  })
-
+    limit: 6,
+  });
 
   return (
     <>
@@ -64,8 +63,8 @@ export default async function Home({searchParams}: SearchParamProps) {
             emptyStateSubtext="Come back later"
             collectionType="All_Events"
             limit={6}
-            page={1}
-            totalPages={2}
+            page={page}
+            totalPages={events?.totalPages}
           />
         </div>
       </section>
