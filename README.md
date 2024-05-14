@@ -14,10 +14,6 @@ Evently is a modern event management application designed to help users create, 
 
 Check out the live deployment of Evently [here](https://evently-kappa-sage.vercel.app/).
 
-## Installation
-
-To get a local copy up and running, follow these simple steps.
-
 ## Screenshots
 
 ### Home Page
@@ -34,6 +30,14 @@ To get a local copy up and running, follow these simple steps.
 - Node.js
 - npm (Node Package Manager)
 - MongoDB
+- Clerk
+- Uploadthing 
+- Stripe
+
+
+## Installation
+
+To get a local copy up and running, follow these simple steps.
 
 ### Installation Steps
 
