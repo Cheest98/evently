@@ -21,10 +21,10 @@ To get a local copy up and running, follow these simple steps.
 ## Screenshots
 
 ### Home Page
-![Home Page](./assets/homepage.png)
+![Home Page](./public/assets/homepage.png)
 
 ### Event Creation Page
-![Event Creation Page](./assets/homepage.png)
+![Event Creation Page](./public/assets/homepage.png)
 
 ### Prerequisites
 
